@@ -1,0 +1,15 @@
+package com.day2.lab1;
+
+public class AccessSystem {
+
+    public void requestAccess(Role role, String resource) {
+        System.out.println("Processing access request:");
+        System.out.println("  - Role:      " + role.getRoleName());
+        System.out.println("  - Resource:  '" + resource + "'");
+
+        role.accessResource(resource);
+
+        System.out.println("--");
+    }
+}
+
