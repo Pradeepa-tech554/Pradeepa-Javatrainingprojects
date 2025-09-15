@@ -1,0 +1,67 @@
+package com.day1.lab2;
+
+import java.util.Arrays;
+
+public class RecursiveStopVIPNumber {
+
+    private static final int VIP_ID = 999;
+
+    public static void processCustomerQueue(int[] customerIDs) {
+        if (customerIDs == null || customerIDs.length == 0) {
+            System.out.println("Notice: The customer queue is empty or invalid. No customers will be processed.");
+            return;
+        }
+
+        System.out.println("--- Starting Customer Queue Processing ---");
+        processCustomerRecursive(customerIDs, 0);
+        System.out.println("--- Customer Queue Processing Finished ---\n");
+    }
+
+    private static void processCustomerRecursive(int[] customerIDs, int currentIndex) {
+        if (currentIndex >= customerIDs.length) {
+            return;
+        }
+
+        int currentCustomerID = customerIDs[currentIndex];
+
+        if (currentCustomerID == VIP_ID) {
+            System.out.println("ALERT: Customer ID " + currentCustomerID + " (VIP) found! Stopping all further processing immediately.");
+            return;
+        }
+
+        System.out.println("Processing regular customer ID: " + currentCustomerID);
+
+        processCustomerRecursive(customerIDs, currentIndex + 1);
+    }
+
+    public static void main(String[] args) {
+        int[] queue1 = {101, 102, VIP_ID, 103, 104};
+        System.out.println("Test Case 1: VIP in the middle. Queue: " + Arrays.toString(queue1));
+        processCustomerQueue(queue1);
+
+
+        int[] queue2 = {VIP_ID, 201, 202};
+        System.out.println("Test Case 2: VIP at the beginning. Queue: " + Arrays.toString(queue2));
+        processCustomerQueue(queue2);
+
+
+        int[] queue3 = {301, 302, VIP_ID};
+        System.out.println("Test Case 3: VIP at the end. Queue: " + Arrays.toString(queue3));
+        processCustomerQueue(queue3);
+
+
+        int[] queue4 = {401, 402, 403, 404};
+        System.out.println("Test Case 4: No VIPs in the queue. Queue: " + Arrays.toString(queue4));
+        processCustomerQueue(queue4);
+
+
+        int[] queue5 = {};
+        System.out.println("Test Case 5: An empty queue. Queue: " + Arrays.toString(queue5));
+        processCustomerQueue(queue5);
+
+
+        int[] queue6 = null;
+        System.out.println("Test Case 6: A null queue. Queue: " + Arrays.toString(queue6));
+        processCustomerQueue(queue6);
+    }
+}
