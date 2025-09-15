@@ -1,0 +1,74 @@
+package com.day3.lab2;
+
+public class WheatherData {
+
+    private final String source;
+    private final double temperature;
+    private final double humidity;
+    private final double windSpeed;
+
+    private WheatherData(Builder builder) {
+        this.source = builder.source;
+        this.temperature = builder.temperature;
+        this.humidity = builder.humidity;
+        this.windSpeed = builder.windSpeed;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public double getTemperature() {
+        return temperature;
+    }
+
+    public double getHumidity() {
+        return humidity;
+    }
+
+    public double getWindSpeed() {
+        return windSpeed;
+    }
+
+    @Override
+    public String toString() {
+        return "WeatherData{" +
+               "source='" + source + '\'' +
+               ", temperature=" + temperature +
+               ", humidity=" + humidity +
+               ", windSpeed=" + windSpeed +
+               '}';
+    }
+
+    public static class Builder {
+        private String source;
+        private double temperature;
+        private double humidity;
+        private double windSpeed;
+
+        public Builder source(String source) {
+            this.source = source;
+            return this;
+        }
+
+        public Builder temperature(double temperature) {
+            this.temperature = temperature;
+            return this;
+        }
+
+        public Builder humidity(double humidity) {
+            this.humidity = humidity;
+            return this;
+        }
+
+        public Builder windSpeed(double windSpeed) {
+            this.windSpeed = windSpeed;
+            return this;
+        }
+
+        public WheatherData build() {
+            return new WheatherData(this);
+        }
+    }
+}
+
